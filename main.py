@@ -1,8 +1,17 @@
 from flask import Flask, jsonify
 
+from get_matches import matches_bp
+from get_standings import standings_bp
+from reset_match import reset_bp
+from update_score import score_bp
+
 main = Flask(__name__)
 
-# API information route (not counted among the four match endpoints).
+main.register_blueprint(matches_bp)
+main.register_blueprint(standings_bp)
+main.register_blueprint(reset_bp)
+main.register_blueprint(score_bp)
+
 @main.route("/", methods=["GET"])
 def home():
     """Show the API welcome message and endpoint paths."""
